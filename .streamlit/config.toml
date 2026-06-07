@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#2563eb" # Electric Corporate Blue
+backgroundColor = "#f8fafc" # Clean Slate White
+secondaryBackgroundColor = "#ffffff" # Pure White for Sidebars/Cards
+textColor = "#0f172a" # Deep Charcoal (Premium readability)
+font = "sans serif"
