@@ -29,3 +29,7 @@ This is an enterprise-grade, AI-powered data analyst web application built using
 1. **Activate Virtual Environment**:
    ```bash
    venv\Scripts\activate
+
+# AI Data Analyst Agent
+
+▶️ **[Live Interactive Web Application Link](https://ai-data-analyst-ftlhp3qlappmn6tzeqjhg6f.streamlit.app/)**   
