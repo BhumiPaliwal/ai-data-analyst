@@ -1,32 +1,31 @@
 # AI Data Analyst Agent
 
-This is an AI-powered data analyst web app built using Python, Streamlit, Pandas, and Gemini AI.
+This is an enterprise-grade, AI-powered data analyst web application built using Python, Streamlit, Pandas, and local LLM integration. It provides real-time data ingestion, structural integrity checks, conversational AI context analytics, and branded executive report generation.
 
 ## Features
 
-- Upload CSV datasets
-- View dataset preview
-- Check rows, columns, and missing values
-- View column information
-- Generate numerical summary
-- Ask basic dataset questions
-- Generate charts
-- Analyze individual columns
-- Search and filter data
-- Clean duplicate and missing values
-- Download summary reports
-- Get AI-powered insights using Gemini
+- **Multi-File Ingestion Pipeline**: Streamlined CSV uploads with automated memory caching and data history track management.
+- **Global Workspace Pulse**: Real-time diagnostic tracking showing total log entries, feature dimensions, and an automated data structural integrity rate indicator.
+- **Interactive Matrix Explorer**: Edit tabular workspace frames inside an active data editor matrix grid with real-time data frame synchronization.
+- **Statistical Dispersion Analytics**: Instant summary mapping of metrics tracking mean variance, distributions, and quantiles.
+- **Real-Time Visualization Engine**: Interactive Plotly-backed render maps featuring Scatter plots, Box plots, custom Histograms, and Category segregation lines.
+- **Mathematical Outlier Isolation**: Automated anomaly auditing matching strict Interquartile Range ($IQR$) formulas to flag systemic outliers.
+- **Conversational Brain AI**: Dynamic data analyst chat module matching automated prompt guardrails to run localized data telemetry actions safely.
+- **Data Transformation Pipeline**: One-click engineering modules to purge row duplicates and perform mean imputation on blank value spaces.
+- **Enterprise Reporting Engine**: Dynamic execution pipeline compiling custom data summary vectors, chat logs, and custom commentary into multi-page corporate PDF documents.
+- **Digital Sign-off Matrix**: Integrated handwritten signature authentication board (`streamlit-drawable-canvas`) to lock official authorizations directly into output PDF brief designs.
 
 ## Technologies Used
 
-- Python
-- Streamlit
-- Pandas
-- Google Gemini API
+- **UI Framework**: Streamlit
+- **Core Engine Data Structures**: Pandas, NumPy
+- **Visual Analytics Layer**: Plotly Express
+- **Document Portfolio Pipeline**: FPDF, Pillow (PIL)
+- **Digital Canvas Component**: Streamlit Drawable Canvas
+- **Localized LLM Client**: Ollama (Phi-3 Inference Engine)
 
 ## How to Run
 
-1. Activate virtual environment:
-
-```bash
-venv\Scripts\activate
+1. **Activate Virtual Environment**:
+   ```bash
+   venv\Scripts\activate
