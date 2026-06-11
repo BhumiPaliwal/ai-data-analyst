@@ -4,3 +4,4 @@ numpy==2.4.6
 plotly==5.24.1
 ollama==0.4.2
 fpdf2==2.8.2
+streamlit-drawable-canvas
