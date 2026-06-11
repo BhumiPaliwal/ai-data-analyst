@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import os
+from streamlit_drawable_canvas import st_canvas
 
 # 1. Broad Page Configurations
 st.set_page_config(page_title="Advanced Data Science Workspace", layout="wide")
@@ -178,10 +179,8 @@ if "datasets" not in st.session_state:
 if uploaded_file is not None:
     file_name = uploaded_file.name
     if file_name not in st.session_state.datasets:
-        # --- FIXED LATIN-1 TYPO HERE ---
         st.session_state.datasets[file_name] = pd.read_csv(uploaded_file, encoding='latin-1')
     
-    # --- CLEANED UP MULTI-FILE HISTORY DROPDOWN MANAGEMENT ---
     file_list = list(st.session_state.datasets.keys())
     if "selected_file_key" not in st.session_state or st.session_state.selected_file_key not in file_list:
         st.session_state.selected_file_key = file_name
@@ -300,7 +299,7 @@ if uploaded_file is not None:
             else:
                 st.info("No numeric tracking points available for anomaly checking.")
 
-    # TAB 4: DEEP BRAIN AI CHAT (Self-Correcting Dynamic Analyst Engine)
+    # TAB 4: DEEP BRAIN AI CHAT
     with tabs[3]:
         st.subheader("💬 Dynamic Local Data Analyst AI")
         st.markdown("<small>⚡ *Generates real-time Python analytics code locally using Phi-3 with Auto-Guardrails.*</small>", unsafe_allow_html=True)
@@ -376,7 +375,7 @@ if uploaded_file is not None:
                 except Exception as e:
                     st.error(f"Local Model Connection Error: {e}")
 
-    # TAB 5: DATA TRANSFORMER
+    # TAB 5: DATA TRANSFORMER & REPORT ENGINE
     with tabs[4]:
         with st.container(border=True):
             st.subheader("Advanced Data Wrangling Options")
@@ -394,12 +393,225 @@ if uploaded_file is not None:
                     st.success("Numeric fields updated with column averages.")
                     st.rerun()
                 
+        # Main Report Engine Interface Box
+        with st.container(border=True):
+            st.subheader("📊 Executive Summary Report Generator")
+            st.markdown("<small>📄 *Generates a branded, presentation-ready PDF report summarizing active workspace telemetry metrics.*</small>", unsafe_allow_html=True)
+            
+            # 1. Commentary Box Input Frame
+            exec_notes = st.text_area("Add Custom Executive Commentary/Notes (Optional):", placeholder="Type any observations or notes to include in the official PDF attachment...")
+            
+            # 2. Bounded Live Signature Whiteboard Widget Block
+            st.markdown("### ✍️ Executive Authorization Signature")
+            st.markdown("<small>🖊️ *Draw your digital authorization inside the box below before compiling.*</small>", unsafe_allow_html=True)
+            
+            # Clean CSS rule integration
+            st.markdown(
+                """
+                <style>
+                iframe[title="streamlit_drawable_canvas.st_canvas"] {
+                    border: 2px dashed #cbd5e1 !important;
+                    border-radius: 8px !important;
+                    background-color: #f8fafc !important;
+                }
+                </style>
+                """,
+                unsafe_allow_html=True
+            )
+            
+            # Cleaned Python Indentation (Zero hidden web-text characters)
+            canvas_result = st_canvas(
+                fill_color="rgba(255, 255, 255, 0)", 
+                stroke_width=3,                      
+                stroke_color="#0f172a",              
+                background_color="#f8fafc",          
+                height=150,                          
+                width=500,                           
+                drawing_mode="freedraw",
+                key="executive_signature_pad",
+            )
+
+            # 3. Compile Core Action Button Pipeline Trigger
+            if st.button("Compile Executive PDF Report"):
+                from fpdf import FPDF
+                import io
+                
+                try:
+                    class CorporatePDF(FPDF):
+                        def header(self):
+                            self.set_fill_color(15, 23, 42)
+                            self.rect(0, 0, 210, 6, "F")
+                            
+                        def footer(self):
+                            self.set_y(-15)
+                            self.set_font("Helvetica", "I", 8)
+                            self.set_text_color(148, 163, 184)
+                            self.cell(0, 10, f"Page {self.page_no()} | Confidential Enterprise Workspace Asset", border=0, ln=False, align="L")
+                            self.cell(0, 10, "System Data Science Core Engine v2.0", border=0, ln=False, align="R")
+
+                    pdf = CorporatePDF()
+                    pdf.set_auto_page_break(auto=True, margin=20)
+                    pdf.add_page()
+                    
+                    pdf.ln(6)
+                    pdf.set_font("Helvetica", "B", 20)
+                    pdf.set_text_color(30, 58, 138)
+                    pdf.cell(190, 10, "EXECUTIVE WORKSPACE TELEMETRY REPORT", ln=True, align="L")
+                    
+                    pdf.set_font("Helvetica", "", 10)
+                    pdf.set_text_color(100, 116, 139)
+                    pdf.cell(190, 5, txt=f"Generated System Analytics Log - Active File: {selected_file}", ln=True, align="L")
+                    
+                    pdf.ln(2)
+                    pdf.set_draw_color(37, 99, 235)
+                    pdf.set_line_width(0.8)
+                    pdf.line(10, pdf.get_y(), 200, pdf.get_y())
+                    pdf.ln(6)
+                    
+                    pdf.set_font("Helvetica", "B", 13)
+                    pdf.set_text_color(30, 58, 138)
+                    pdf.cell(190, 8, "1. Executive Position Summary", ln=True)
+                    
+                    pdf.set_font("Helvetica", "", 10)
+                    pdf.set_text_color(51, 65, 85)
+                    summary_text = (
+                        f"This document formalizes the internal diagnostic evaluation of the target asset data structure ({selected_file}). "
+                        f"The operational ecosystem parsed a raw array space totaling {rows:,} matrix entries across {columns} mapped analytical fields. "
+                        f"System validation processes confirmed a core structural runtime operational integrity rating of {health_rate:.2f}%."
+                    )
+                    pdf.multi_cell(190, 5, txt=summary_text)
+                    pdf.ln(6)
+                    
+                    pdf.set_font("Helvetica", "B", 13)
+                    pdf.set_text_color(30, 58, 138)
+                    pdf.cell(190, 8, "2. Operational Performance & System Telemetry", ln=True)
+                    pdf.ln(2)
+                    
+                    pdf.set_font("Helvetica", "B", 10)
+                    pdf.set_fill_color(241, 245, 249)
+                    pdf.set_text_color(15, 23, 42)
+                    pdf.cell(110, 8, "  Evaluated Telemetry Vector Column", border=1, align="L", fill=True)
+                    pdf.cell(80, 8, "Extracted System Metric Value  ", border=1, align="C", fill=True)
+                    pdf.ln()
+                    
+                    pdf.set_font("Helvetica", "", 10)
+                    metrics_data = [
+                        ("Total Data Records Ingested (DataFrame Rows)", f"{rows:,} entries"),
+                        ("Mapped Dimensional Constraints (DataFrame Columns)", f"{columns} dimensions"),
+                        ("Target Structural Integrity Index Ratio", f"{health_rate:.1f}% status code"),
+                        ("Discovered Null / Blank Elements inside Matrix", f"{total_missing} elements"),
+                        ("Numerical Columns Registered in active memory", f"{len(numeric_cols)} features")
+                    ]
+                    
+                    for label, val in metrics_data:
+                        pdf.cell(110, 7, f"  {label}", border=1, align="L")
+                        pdf.cell(80, 7, val, border=1, align="C")
+                        pdf.ln()
+                        
+                    pdf.ln(6)
+                    
+                    pdf.set_font("Helvetica", "B", 13)
+                    pdf.set_text_color(30, 58, 138)
+                    pdf.cell(190, 8, "3. Localized Brain AI Chat Interface Summary Log", ln=True)
+                    pdf.ln(2)
+                    
+                    if st.session_state.chat_history:
+                        for msg in st.session_state.chat_history[-4:]:
+                            role_label = "User Prompt" if msg["role"] == "user" else "AI Analytical Insight"
+                            
+                            clean_text = (msg["content"]
+                                          .replace("•", "-")
+                                          .replace("—", "-")
+                                          .replace("`", "'")
+                                          .replace("“", '"')
+                                          .replace("”", '"'))
+                            clean_text = clean_text.encode('latin-1', 'ignore').decode('latin-1')
+                            
+                            pdf.set_font("Helvetica", "B", 9)
+                            if msg["role"] == "user":
+                                pdf.set_text_color(37, 99, 235)
+                            else:
+                                pdf.set_text_color(5, 150, 105)
+                                
+                            pdf.cell(190, 5, txt=f"[{role_label}]", ln=True)
+                            
+                            pdf.set_font("Helvetica", "", 10)
+                            pdf.set_text_color(51, 65, 85)
+                            pdf.multi_cell(190, 5, txt=clean_text)
+                            pdf.ln(2)
+                    else:
+                        pdf.set_font("Helvetica", "I", 10)
+                        pdf.set_text_color(100, 116, 139)
+                        pdf.cell(190, 6, txt="No conversational interactive logic executed during this processing timeframe.", ln=True)
+                    
+                    pdf.ln(6)
+                    
+                    if exec_notes:
+                        pdf.set_font("Helvetica", "B", 13)
+                        pdf.set_text_color(30, 58, 138)
+                        pdf.cell(190, 8, "4. Strategic Notes & Custom Advisory Commentary", ln=True)
+                        pdf.ln(2)
+                        
+                        pdf.set_font("Helvetica", "", 10)
+                        pdf.set_text_color(15, 23, 42)
+                        clean_notes = exec_notes.encode('latin-1', 'ignore').decode('latin-1')
+                        pdf.multi_cell(190, 5, txt=clean_notes)
+                        pdf.ln(6)
+                        
+                    pdf.ln(4)
+                    pdf.set_draw_color(203, 213, 225)
+                    pdf.line(10, pdf.get_y(), 200, pdf.get_y())
+                    pdf.ln(4)
+                    
+                    pdf.set_font("Helvetica", "B", 11)
+                    pdf.set_text_color(30, 58, 138)
+                    pdf.cell(190, 6, txt="5. Strategic Sign-Off Verification Matrix", ln=True)
+                    pdf.ln(12)
+                    
+                    current_y = pdf.get_y()
+                    pdf.set_font("Helvetica", "", 9)
+                    pdf.set_text_color(100, 116, 139)
+                    
+                    pdf.line(15, current_y, 85, current_y)
+                    
+                    if canvas_result is not None and canvas_result.image_data is not None:
+                        from PIL import Image
+                        sig_image = Image.fromarray(canvas_result.image_data.astype('uint8'), 'RGBA')
+                        sig_buffer = io.BytesIO()
+                        sig_image.save(sig_buffer, format="PNG")
+                        sig_buffer.seek(0)
+                        pdf.image(sig_buffer, x=22, y=current_y - 14, w=55, h=13)
+                    
+                    pdf.set_xy(15, current_y + 2)
+                    pdf.cell(70, 4, txt="Reporting Systems Officer Signature", ln=True, align="C")
+                    pdf.set_x(15)
+                    pdf.cell(70, 4, txt="Bhumi Paliwal", ln=True, align="C")
+                    
+                    pdf.line(125, current_y, 195, current_y)
+                    pdf.set_xy(125, current_y + 2)
+                    pdf.cell(70, 4, txt="Executive Corporate Reviewer Sign-off", ln=True, align="C")
+                    pdf.set_x(125)
+                    pdf.cell(70, 4, txt="Date: ____ / ____ / 2026", ln=True, align="C")
+
+                    pdf_buffer = io.BytesIO()
+                    pdf.output(pdf_buffer)
+                    pdf_buffer.seek(0)
+                    
+                    st.success("Advanced Executive Presentation Portfolio Brief Compiled Successfully!")
+                    st.download_button(
+                        label="📥 Download Official Extended Executive PDF Report",
+                        data=pdf_buffer,
+                        file_name=f"Comprehensive_Executive_Brief_{selected_file.split('.')[0]}.pdf",
+                        mime="application/pdf"
+                    )
+                    
+                except Exception as pdf_error:
+                    st.error(f"Error compiling deep document profile matrices: {pdf_error}")    
+
+        # Core CSV export channel container
         with st.container(border=True):
             st.subheader("Export Cleaned Data Structure")
             st.download_button(label="Export Pipeline CSV Output File", data=df.to_csv(index=False), file_name="transformed_dataset.csv", mime="text/csv")
-else:
-    st.info("Drop file sets inside workspace configuration sidebars to unpack computing structures.")
-
 # --- PERSISTENT FOOTER SIGNATURE ---
 st.markdown(
     """
