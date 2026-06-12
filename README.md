@@ -32,4 +32,4 @@ This is an enterprise-grade, AI-powered data analyst web application built using
 
 # AI Data Analyst Agent
 
-▶️ **[Live Interactive Web Application Link](https://ai-data-analyst-ftlhp3qlappmn6tzeqjhg6f.streamlit.app/)**   
+▶️ **[Live Interactive Web Application Link](https://ai-data-analyst-nuxd2yabup2ygf4xgqxswd.streamlit.app/)**   
