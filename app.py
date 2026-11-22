@@ -635,7 +635,7 @@ st.markdown(
     }
     </style>
     <div class="fixed-footer">
-        Developed by Bhumi Paliwal
+        Developed by Bhumi Paliwal and Mohit Mali
     </div>
     """,
     unsafe_allow_html=True
